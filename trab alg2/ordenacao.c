@@ -3,19 +3,31 @@
 #include <string.h>
 
 void getNome(char nome[]){
-	//substitua por seu nome
-	strncpy(nome, "Paulo Ricardo Lisboa de Almeida", MAX_CHAR_NOME);
+	//bota teu nome ai
+	strncpy(nome, "Camila Carta Campos", MAX_CHAR_NOME);
 	nome[MAX_CHAR_NOME-1] = '\0';//adicionada terminação manual para caso de overflow
 }
 
-//a função a seguir deve retornar o seu número de GRR
+//adiciona teu grr tb
 unsigned int getGRR(){
-	return 1234;
+	return 20211764;
 }
 
 int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
-	*numComparacoes = 99;
-	return -1;
+
+	if (tam == 0){
+		return -1;
+	}
+	else {
+		numComparacoes++;
+		if (valor == vetor[tam]){
+			return tam;
+		}
+		else {
+			return buscaSequencial(vetor, tam-1, valor, numComparacoes);
+		}
+	}
+
 }
 
 int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){

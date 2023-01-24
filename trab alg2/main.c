@@ -39,6 +39,8 @@ int main(){
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("Tempo total: %f", total);
 
+	*numComparacoes = 0;
+
 	numComp = selectionSort(vetor, 3);
 	numComp = mergeSort(vetor, 3);
 	numComp = quickSort(vetor, 3);
