@@ -6,8 +6,10 @@
 
 int main(){
 	char nome[MAX_CHAR_NOME];
+	char nome2[MAX_CHAR_NOME];
 	int idxBusca;
 	int numComp;
+	//int numComparacoes;
 
 	//Dica: somente é posśivel criar vetores grandes utilizando alocação dinâmica de memória
 	//Veja um exemplo de alocação dinâmica a seguir
@@ -28,6 +30,10 @@ int main(){
 	printf("Trabalho de %s\n", nome);
 	printf("GRR %u\n", getGRR());
 
+	getNome(nome2);
+	printf("Trabalho de %s\n", nome2);
+	printf("GRR %u\n", getGRR());
+
 	//Para medir o tempo, inclua time.h, e siga o exemplo:
 	clock_t start, end;//variáveis do tipo clock_t
     double total;
@@ -39,7 +45,7 @@ int main(){
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("Tempo total: %f", total);
 
-	*numComparacoes = 0;
+	//*numComparacoes = 0;
 
 	numComp = selectionSort(vetor, 3);
 	numComp = mergeSort(vetor, 3);
