@@ -1,39 +1,52 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){
-	int meio;
-	meio = tam/2;
+void troca(int *vetor, int i, int j){
+	int aux;
+	aux = vetor[i];
+	vetor[i] = vetor[j];
+	vetor[j] = aux;
+}
+
+int* insereOrdenado(int *vetor, int tam, int valor, int* numComparacoes){
+	int p, i;
+	p = buscaSequencial(vetor, tam-1, valor, numComparacoes);
+	while(i > p+1){
+		troca(vetor, i, i-1);
+		i--;
+	}
+	return vetor;
+}
+int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
+
 	if (tam == 0){
 		return -1;
 	}
 	else {
 		numComparacoes++;
-		if (valor == vetor[meio]){
-			return meio;
+		if (valor == vetor[tam]){
+			return tam;
 		}
-		else if (valor < vetor[meio]){
-			numComparacoes++;
-			meio--;
-			return buscaBinaria(vetor, meio, valor, numComparacoes);
-		}
-		else if (valor > vetor[meio]){
-			numComparacoes++;
-			meio++;
-			return buscaBinaria(vetor, meio, valor, numComparacoes);
+		else {
+			return buscaSequencial(vetor, tam-1, valor, numComparacoes);
 		}
 	}
-	return -1;
+
 }
 
 int main(){
     int vetor[10] = {1,2,3,4,5,6,7,8,9,10};
-    int n;
+    int n, x;
+	int i;
     int numComparacoes = 0;
     int num = 0;
+	for(i=0, i < 10; i++){
+		printf("%d ", vetor[i]);
+	}
     scanf("%d", &n);
-    int divisao = buscaBinaria(vetor, 10, n, &numComparacoes);
-    printf("%d", num);
+	scanf("%d", &x);
+    troca(vetor, n, x);
+    printf("primeiro %d, segundo %d \n", vetor[n], vetor[x]);
 
     return 0;
 }

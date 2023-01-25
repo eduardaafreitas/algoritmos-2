@@ -17,31 +17,30 @@ unsigned int getGRR1(){
 	return 20211799;
 }*/
 
-int troca(int vetor[], int i, int j){
+void troca(int *vetor, int i, int j){
 	int aux;
 	aux = vetor[i];
 	vetor[i] = vetor[j];
 	vetor[j] = aux;
-	return 0;
 }
 
-int insere(int vetor[], int tam, int valor){
+/*int insere(int *vetor, int tam, int valor){
 	int i;
 	for (i = tam; i > 0 && vetor[i-1] > valor; i--){
 		vetor[i] = vetor[i-1];
 	}
 	vetor[i] = valor;
 	return 0;
-}
+}*/
 
-int insereOrdenado(int vetor[], int tam, int valor){
-	int i = valor;
-	
+int* insereOrdenado(int *vetor, int tam, int valor, int* numComparacoes){
+	int p, i;
+	p = buscaSequencial(vetor, tam-1, valor, numComparacoes);
 	while(i > p+1){
 		troca(vetor, i, i-1);
 		i--;
 	}
-
+	return vetor;
 }
 
 
@@ -62,7 +61,7 @@ int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
 
 }
 
-int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){
+int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){			//colocar alg ordenação
 	int meio;
 	meio = tam/2;
 	if (tam == 0){
@@ -75,11 +74,13 @@ int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){
 		}
 		else if (valor < vetor[meio]){
 			numComparacoes++;
-			return buscaBinaria(vetor, meio-1, valor, numComparacoes);
+			meio--;
+			buscaBinaria(vetor, meio, valor, numComparacoes);
 		}
 		else if (valor > vetor[meio]){
 			numComparacoes++;
-			return buscaBinaria(vetor, meio+1, valor, numComparacoes);
+			meio++;
+			buscaBinaria(vetor, meio, valor, numComparacoes);
 		}
 	}
 	return -1;
@@ -88,6 +89,15 @@ int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){
 
 int insertionSort(int vetor[], int tam){	
 	vetor[0] = 99;
+	if(tam == 0){
+		return -1
+	}
+	else{
+		numComparacoes++;
+		insertionSort(vetor, tam-1, valor, numComparacoes);
+		insereOrdenado(&vetor, tam, valor, numComparacoes);
+		return numComparacoes;
+	}
 	return -1;
 }
 
