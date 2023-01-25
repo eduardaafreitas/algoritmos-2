@@ -2,20 +2,19 @@
 #include <string.h>
 
 
-void getNome(char nome[]){
-	//bota teu nome ai
+void getNome(char nome[], char nome2[]){
 	strncpy(nome, "Camila Carta Campos", MAX_CHAR_NOME);
-	strncpy(nome, "Eduarda de Aguiar Freitas", MAX_CHAR_NOME);
+	strncpy(nome2, "Eduarda de Aguiar Freitas", MAX_CHAR_NOME);
 	nome[MAX_CHAR_NOME-1] = '\0'; 					//adicionada terminação manual para caso de overflow
+	nome2[MAX_CHAR_NOME-1] = '\0';
 }
 
-//adiciona teu grr tb
 unsigned int getGRR1(){
 	return 20211764;
 }
-/*unsigned int getGRR2(){
+unsigned int getGRR2(){
 	return 20211799;
-}*/
+}
 
 void troca(int *vetor, int i, int j){
 	int aux;
@@ -23,15 +22,6 @@ void troca(int *vetor, int i, int j){
 	vetor[i] = vetor[j];
 	vetor[j] = aux;
 }
-
-/*int insere(int *vetor, int tam, int valor){
-	int i;
-	for (i = tam; i > 0 && vetor[i-1] > valor; i--){
-		vetor[i] = vetor[i-1];
-	}
-	vetor[i] = valor;
-	return 0;
-}*/
 
 int* insereOrdenado(int *vetor, int tam, int valor, int* numComparacoes){
 	int p, i;
@@ -43,6 +33,13 @@ int* insereOrdenado(int *vetor, int tam, int valor, int* numComparacoes){
 	return vetor;
 }
 
+void imprimeVetor(int *vetor, int tam){
+	int i;
+	for(i = 0; i < tam; i++){
+		printf("%d ", vetor[i]);
+	}
+	printf("\n");
+}
 
 int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
 
@@ -96,6 +93,7 @@ int insertionSort(int vetor[], int tam){
 		numComparacoes++;
 		insertionSort(vetor, tam-1, valor, numComparacoes);
 		insereOrdenado(&vetor, tam, valor, numComparacoes);
+		imprimeVetor(vetor, tam);
 		return numComparacoes;
 	}
 	return -1;

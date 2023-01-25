@@ -8,15 +8,6 @@ void troca(int *vetor, int i, int j){
 	vetor[j] = aux;
 }
 
-int* insereOrdenado(int *vetor, int tam, int valor, int* numComparacoes){
-	int p, i;
-	p = buscaSequencial(vetor, tam-1, valor, numComparacoes);
-	while(i > p+1){
-		troca(vetor, i, i-1);
-		i--;
-	}
-	return vetor;
-}
 int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
 
 	if (tam == 0){
@@ -34,19 +25,53 @@ int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
 
 }
 
-int main(){
-    int vetor[10] = {1,2,3,4,5,6,7,8,9,10};
-    int n, x;
+int* insereOrdenado(int* vetor, int tam, int* numComparacoes){
+	int p;
+	int i = tam-1;
+	p = buscaSequencial(vetor, tam-1, i, numComparacoes);
+	while(i > p+1){
+		troca(vetor, i, i-1);
+		i--;
+	}
+	return vetor;
+}
+
+
+void imprimeVetor(int *vetor, int tam){
 	int i;
-    int numComparacoes = 0;
-    int num = 0;
-	for(i=0, i < 10; i++){
+	for(i = 0; i < tam; i++){
 		printf("%d ", vetor[i]);
 	}
-    scanf("%d", &n);
-	scanf("%d", &x);
-    troca(vetor, n, x);
-    printf("primeiro %d, segundo %d \n", vetor[n], vetor[x]);
+	printf("\n");
+}
+
+
+int insertionSort(int vetor[], int tam){	
+	vetor[0] = 99;
+	int* numComparacoes = 0;
+	if(tam == 0){
+		return -1;
+	}
+	else{
+		numComparacoes++;
+		insertionSort(vetor, tam-1);
+		insereOrdenado(vetor, tam, numComparacoes);
+		return *numComparacoes;
+	}
+	return -1;
+}
+
+int main(){
+    int vetor[10] = {1,7,3,4,9,6,2,8,5,10};
+    //int n, x;
+	//int i;
+    int numComparacoes = 0;
+    //int num = 0;
+    //scanf("%d", &n);
+	//scanf("%d", &x);
+    insertionSort(vetor, 10);
+    printf("num comp: %d \n", numComparacoes);
+	imprimeVetor(vetor, 10);
 
     return 0;
 }

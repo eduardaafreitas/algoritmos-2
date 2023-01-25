@@ -5,11 +5,11 @@
 
 //a função getNome deve colocar o seu nome dentro da chamada
 //seu nome pode ter no máximo MAX_CHAR_NOME - 1 caracteres
-void getNome(char nome[]);
+void getNome(char nome[], char nome2[]);
 
 //a função a seguir deve retornar o seu número de GRR
-unsigned int getGRR();
-
+unsigned int getGRR1();
+unsigned int getGRR2();
 //Assuma que os vetores estão ordenados ao chamar as funções de busca
 //As funções de busca não devem alterar o vetor
 //O retorno das funções de busca é o índice do elemento no vetor,

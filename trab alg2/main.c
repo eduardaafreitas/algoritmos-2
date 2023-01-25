@@ -27,8 +27,9 @@ int main(){
 	vetor[2] = 12;
 
 	getNome(nome);
-	printf("Trabalho de %s\n", nome);
-	printf("GRR %u\n", getGRR());
+	getNome(nome2);
+	printf("Trabalho de %s e %s \n", nome, nome2);
+	printf("GRR %u, GRR %u \n", getGRR1(), getGRR2());
 
 	getNome(nome2);
 	printf("Trabalho de %s\n", nome2);
