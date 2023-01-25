@@ -34,6 +34,15 @@ int insere(int vetor[], int tam, int valor){
 	return 0;
 }
 
+int insereOrdenado(int vetor[], int tam, int valor){
+	int i = valor;
+	
+	while(i > p+1){
+		troca(vetor, i, i-1);
+		i--;
+	}
+
+}
 
 
 int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
