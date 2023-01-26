@@ -23,6 +23,18 @@ void troca(int *vetor, int i, int j){
 	vetor[j] = aux;
 }
 
+int minimoVetor(int vetor[], int a, int b){ /* usando no selectionsort */
+	if (a == b){
+		return a;
+	}
+	int m = minimoVetor(vetor, a, b-1);
+	if (vetor[b] < vetor[m]){
+		m = b;
+	}
+	numComparacoes++;
+	return m;
+}
+
 int* insereOrdenado(int *vetor, int tam, int valor, int* numComparacoes){
 	int p, i;
 	p = buscaSequencial(vetor, tam-1, valor, numComparacoes);
@@ -39,6 +51,30 @@ void imprimeVetor(int *vetor, int tam){
 		printf("%d ", vetor[i]);
 	}
 	printf("\n");
+}
+
+int* intercala(int* vetor, int ini, int meio, int tam){ /* usado para mergesort */
+	if (tam <= ini){
+		return vetor;
+	}
+	int i = ini;
+	int j = meio++;
+	int k;
+	int u[tam];
+	for (k = 0; k < tam; ++k)
+	{
+		numComparacoes++;
+		if (j > b) || (i <= meio && vetor[i] <= vetor[j]){
+			u[k] = vetor[i];
+			i++;
+		}
+		else{
+			u[k] = vetor[j];
+			j++;
+		}
+	}
+	vetor = u;
+	return vetor;
 }
 
 int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
@@ -87,7 +123,7 @@ int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){			//colo
 int insertionSort(int vetor[], int tam){	
 	vetor[0] = 99;
 	if(tam == 0){
-		return -1
+		return -1;
 	}
 	else{
 		numComparacoes++;
@@ -99,15 +135,45 @@ int insertionSort(int vetor[], int tam){
 	return -1;
 }
 
+int selecionaEOrdena(int vetor[], int prim, int tam){
+	if (prim >= tam){
+		return numComparacoes;
+	}
+	troca(vetor, prim, minimoVetor(vetor, prim, tam));
+	return selecionaEOrdena(vetor, prim+1, tam);
+}
 
 int selectionSort(int vetor[], int tam){
 	vetor[0] = 99;
+	numComparacoes = 0; /* limpa o numero de comparações feito até agora, pode apagar se achar q nn precisa */
+	if (tam < 0){
+		return -1;
+	}
+	else { /* isso aqui é um wrapper; tudo eh feito no selecionaEOrdena */
+		numComparacoes = selecionaEOrdena(vetor, 0, tam);
+		return numComparacoes;
+	}
 	return -1;
+}
+
+void ordenaMerge(int vetor[], int ini, int tam){
+	if (tam <= ini){
+		return *vetor;
+	}
+	int meio;
+	meio = ((tam + ini) div 2);
+	ordenaMerge(vetor, ini, meio);
+	ordenaMerge(vetor, meio + 1, tam);
+	return intercala(vetor, ini, meio, tam);
 }
 
 int mergeSort(int vetor[], int tam){
 	vetor[0] = 99;
-	return -1;
+	if (tam <= 0){
+		return -1;
+	} /* wrapper dnv! */
+	ordenaMerge(vetor, 0, tam);
+	return numComparacoes;
 }
 
 int quickSort(int vetor[], int tam){
