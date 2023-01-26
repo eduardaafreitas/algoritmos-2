@@ -36,6 +36,8 @@ int minimoVetor(int vetor[], int a, int b){ /* usando no selectionsort */
 	return m;
 }
 
+//FALTA FAZER ESSA MERDA DE INSERTION SORT FUNCIONAR (e tb testar todos os outros)
+
 int* insereOrdenado(int *vetor, int tam, int valor, int* numComparacoes){
 	int p, i;
 	p = buscaSequencial(vetor, tam-1, valor, numComparacoes);
@@ -54,29 +56,6 @@ void imprimeVetor(int *vetor, int tam){
 	printf("\n");
 }
 
-int* intercala(int* vetor, int ini, int meio, int tam){ /* usado para mergesort */
-	if (tam <= ini){
-		return vetor;
-	}
-	int i = ini;
-	int j = meio++;
-	int k;
-	int u[tam];
-	for (k = 0; k < tam; ++k)
-	{
-		numComparacoes++;
-		if (j > b) || (i <= meio && vetor[i] <= vetor[j]){
-			u[k] = vetor[i];
-			i++;
-		}
-		else{
-			u[k] = vetor[j];
-			j++;
-		}
-	}
-	vetor = u;
-	return vetor;
-}
 
 int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
 
@@ -121,6 +100,7 @@ int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){			//colo
 }
 
 
+
 int insertionSort(int vetor[], int tam){	
 	vetor[0] = 99;
 	if(tam == 0){
@@ -157,6 +137,30 @@ int selectionSort(int vetor[], int tam){
 	return -1;
 }
 
+int* intercala(int* vetor, int ini, int meio, int tam){ /* usado para mergesort */
+	if (tam <= ini){
+		return vetor;
+	}
+	int i = ini;
+	int j = meio++;
+	int k;
+	int u[tam];
+	for (k = 0; k < tam; ++k)
+	{
+		numComparacoes++;
+		if (j > b) || (i <= meio && vetor[i] <= vetor[j]){
+			u[k] = vetor[i];
+			i++;
+		}
+		else{
+			u[k] = vetor[j];
+			j++;
+		}
+	}
+	vetor = u;
+	return vetor;
+}
+
 void ordenaMerge(int vetor[], int ini, int tam){
 	if (tam <= ini){
 		return *vetor;
@@ -177,12 +181,80 @@ int mergeSort(int vetor[], int tam){
 	return numComparacoes;
 }
 
+int particiona(int vetor[], int tam, int pivo){
+	int meio;
+	int i, ini;
+	ini = 1; // começo do vetor
+	meio = ini - 1;
+	for(i = ini; i < tam; i++){
+		if(vetor[i] <= pivo){
+			meio++;
+			troca(&vetor, meio, i);
+			numComparacoes++;
+		}
+	}
+	return meio;
+}
+
+void ordenaQuick(int vetor[], int ini, int tam){
+	if (tam <= ini){
+		return *vetor;
+	}
+	int meio
+	meio = particiona(vetor, ini, tam, vetor[tam]);
+	ordenaQuick(vetor, ini, meio-1);
+	ordenaQuick(vetor, meio+1, tam);
+}
+
 int quickSort(int vetor[], int tam){
 	vetor[0] = 99;
-	return -1;
+	if(tam <= 0){
+		return -1
+	} /*wrapper aqui!*/
+	ordenaQuick(vetor, 0, tam);
+	return numComparacoes;
+}
+
+void maxHeapify(int vetor[], int tam, int ini){
+	int esq, dir, maior;
+	maior = ini;
+	esq = ((2*ini) + 1);
+	dir = ((2*ini) + 2);
+	if(esq < dir && vetor[esq] > vetor[maior]){
+		numComparacoes++;
+		maior = esq;
+	}
+	if(dir < tam && vetor[dir] > vetor[maior]){
+		numComparacoes++;
+		maior = dir;
+	}
+	if(maior != ini){
+		troca(vetor, ini, maior);
+		maxHeapify(vetor, tam, maior);
+	}
+}
+
+void buildMaxHeapify(int vetor[], int tam){
+	int i;
+	for(i = (tam/2)-1; i >= 1; i--){
+		maxHeapify(vetor, tam, i);
+	}
+}
+
+void ordenaHeap(int vetor[], int tam){
+	buildMaxHeapify(vetor, tam);
+	int i;
+	for(i = n-1; i>= 1; i--){
+		troca(vetor, 1, i);
+		maxHeapify(vetor, i, 1);
+	}
 }
 
 int heapSort(int vetor[], int tam){
 	vetor[0] = 99;
-	return -1;
+	if(tam <= 0){
+		return -1
+	} /*wrapper aqui!*/
+	ordenaHeap(vetor, tam);
+	return numComparacoes;
 }
