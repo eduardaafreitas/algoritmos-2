@@ -47,7 +47,6 @@ void imprimeVetor(int *vetor, int tam){
 
 
 int insertionSort(int vetor[], int tam){	
-	vetor[0] = 99;
 	int* numComparacoes = 0;
 	if(tam == 0){
 		return -1;
@@ -56,14 +55,14 @@ int insertionSort(int vetor[], int tam){
 		numComparacoes++;
 		insertionSort(vetor, tam-1);
 		insereOrdenado(vetor, tam, numComparacoes);
-		return *numComparacoes;
+		//return *numComparacoes;
 	}
 	return -1;
 }
 
 int main(){
     int vetor[10] = {1,7,3,4,9,6,2,8,5,10};
-    //int n, x;
+    //int n;
 	//int i;
     int numComparacoes = 0;
     //int num = 0;
@@ -71,6 +70,7 @@ int main(){
 	//scanf("%d", &x);
     insertionSort(vetor, 10);
     printf("num comp: %d \n", numComparacoes);
+	//printf("posicao: %d \n", num);
 	imprimeVetor(vetor, 10);
 
     return 0;

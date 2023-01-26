@@ -1,6 +1,7 @@
 #include "ordenacao.h"
 #include <string.h>
-
+#include <stdio.h>
+#include "libOrd.h"
 
 void getNome(char nome[], char nome2[]){
 	strncpy(nome, "Camila Carta Campos", MAX_CHAR_NOME);
