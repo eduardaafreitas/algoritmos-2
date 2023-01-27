@@ -18,6 +18,236 @@ int* vetorRand(int* vetor){
 	return vetor;
 }
 
+void testaInsertion(int* vetor){
+
+	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
+
+	printf("Criando vetor de tamanho %d para o Insertion Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+    double total;
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = insertionSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+/* ================================================================================ */
+
+	tamAtual = TAM_VETOR2; /* VETOR DE 50K */
+
+	printf("Criando vetor de tamanho %d para o Insertion Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = insertionSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+/* ================================================================================ */
+
+	tamAtual = TAM_VETOR3; /* VETOR DE 100K */
+
+	printf("Criando vetor de tamanho %d para o Insertion Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = insertionSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+	return;
+}
+
+void testaSelection(int* vetor){
+
+	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
+
+	printf("Criando vetor de tamanho %d para o Selection Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+    double total;
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = selectionSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+/* ================================================================================ */
+
+	tamAtual = TAM_VETOR2; /* VETOR DE 50K */
+
+	printf("Criando vetor de tamanho %d para o Selection Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = selectionSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+/* ================================================================================ */
+
+	tamAtual = TAM_VETOR3; /* VETOR DE 100K */
+
+	printf("Criando vetor de tamanho %d para o Selection Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = selectionSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+	return;
+}
+
+void testaMerge(int* vetor){
+
+	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
+
+	printf("Criando vetor de tamanho %d para o Merge Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+    double total;
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = mergeSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+/* ================================================================================ */
+
+	tamAtual = TAM_VETOR2; /* VETOR DE 50K */
+
+	printf("Criando vetor de tamanho %d para o Merge Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = mergeSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+/* ================================================================================ */
+
+	tamAtual = TAM_VETOR3; /* VETOR DE 100K */
+
+	printf("Criando vetor de tamanho %d para o Merge Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = mergeSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+	return;
+}
+
+void testaQuick(int* vetor){
+
+	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
+
+	printf("Criando vetor de tamanho %d para o Quick Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+    double total;
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = quickSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+/* ================================================================================ */
+
+	tamAtual = TAM_VETOR2; /* VETOR DE 50K */
+
+	printf("Criando vetor de tamanho %d para o Quick Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = quickSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+/* ================================================================================ */
+
+	tamAtual = TAM_VETOR3; /* VETOR DE 100K */
+
+	printf("Criando vetor de tamanho %d para o Quick Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = quickSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+	return;
+}
+
+void testaHeap(int* vetor){
+
+	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
+
+	printf("Criando vetor de tamanho %d para o Heap Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+    double total;
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = heapSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+/* ================================================================================ */
+
+	tamAtual = TAM_VETOR2; /* VETOR DE 50K */
+
+	printf("Criando vetor de tamanho %d para o Heap Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = heapSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+/* ================================================================================ */
+
+	tamAtual = TAM_VETOR3; /* VETOR DE 100K */
+
+	printf("Criando vetor de tamanho %d para o Heap Sort.\n", tamAtual);
+	vetor = vetorRand(vetor);
+	clock_t start, end;//variáveis do tipo clock_t
+	start = clock();//start recebe o "ciclo" corrente
+	numComp = heapSort(vetor, tamAtual);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+
+	return;
+}
+
 
 int main(){
 	char nome[MAX_CHAR_NOME];
@@ -45,39 +275,12 @@ int main(){
 /*	getNome(nome2);
 	printf("Trabalho de %s\n", nome2);
 	printf("GRR %u\n", getGRR());*/
+	testaInsertion(vetor);
+	testaSelection(vetor);
+	testaMerge(vetor);
+	testaQuick(vetor);
+	testaHeap(vetor);
 
-	printf("Criando vetor de tamanho %d para o Insertion Sort.\n", TAM_VETOR);
-	vetor = vetorRand(vetor);
-	clock_t start, end;//variáveis do tipo clock_t
-    double total;
-	start = clock();//start recebe o "ciclo" corrente
-	numComp = insertionSort(vetor, TAM_VETOR);
-	end = clock();//end recebe o "ciclo" corrente
-	//o tempo total é a diferença dividia pelos ciclos por segundo
-	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f", total);
-
-	*numComparacoes = 0;
-
-	printf("Criando vetor de tamanho %d para o Insertion Sort.\n", TAM_VETOR);
-	vetor = vetorRand(vetor);
-	clock_t start, end;//variáveis do tipo clock_t
-    double total;
-	start = clock();//start recebe o "ciclo" corrente
-	numComp = selectionSort(vetor, TAM_VETOR);
-
-
-	numComp = mergeSort(vetor, TAM_VETOR);
-
-
-	numComp = quickSort(vetor, TAM_VETOR);
-	
-
-	numComp = heapSort(vetor, TAM_VETOR);
-
-	for(int i=0; i < 3; i++){
-		printf("%d ", vetor[i]);
-	}
 	idxBusca = buscaSequencial(vetor, 3, 10, &numComp);
 	idxBusca = buscaBinaria(vetor, 3, 10, &numComp);
 
