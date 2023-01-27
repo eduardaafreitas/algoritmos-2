@@ -10,9 +10,9 @@
 #define TAM_VETOR3 100000 /* tamanho do vetor */
 #define MAX_VALOR 32768 /* 2^15; valor max q um numero pode assumir */
 
-int* vetorRand(int* vetor){
+int* vetorRand(int* vetor, int tamAtual){
 	int i;
-	for (int i = 0; i < TAM_VETOR; ++i){
+	for (i = 0; i < tamAtual; i++){
 		vetor[i] = rand() % MAX_VALOR;
 	}
 	return vetor;
@@ -21,9 +21,10 @@ int* vetorRand(int* vetor){
 void testaInsertion(int* vetor){
 
 	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
+	int numComp;
 
 	printf("Criando vetor de tamanho %d para o Insertion Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
+	vetor = vetorRand(vetor, tamAtual);
 	clock_t start, end;//variáveis do tipo clock_t
     double total;
 	start = clock();//start recebe o "ciclo" corrente
@@ -38,8 +39,7 @@ void testaInsertion(int* vetor){
 	tamAtual = TAM_VETOR2; /* VETOR DE 50K */
 
 	printf("Criando vetor de tamanho %d para o Insertion Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
-	clock_t start, end;//variáveis do tipo clock_t
+	vetor = vetorRand(vetor, tamAtual);
 	start = clock();//start recebe o "ciclo" corrente
 	numComp = insertionSort(vetor, tamAtual);
 	end = clock();//end recebe o "ciclo" corrente
@@ -52,8 +52,7 @@ void testaInsertion(int* vetor){
 	tamAtual = TAM_VETOR3; /* VETOR DE 100K */
 
 	printf("Criando vetor de tamanho %d para o Insertion Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
-	clock_t start, end;//variáveis do tipo clock_t
+	vetor = vetorRand(vetor, tamAtual);
 	start = clock();//start recebe o "ciclo" corrente
 	numComp = insertionSort(vetor, tamAtual);
 	end = clock();//end recebe o "ciclo" corrente
@@ -67,9 +66,10 @@ void testaInsertion(int* vetor){
 void testaSelection(int* vetor){
 
 	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
+	int numComp;
 
 	printf("Criando vetor de tamanho %d para o Selection Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
+	vetor = vetorRand(vetor, tamAtual);
 	clock_t start, end;//variáveis do tipo clock_t
     double total;
 	start = clock();//start recebe o "ciclo" corrente
@@ -84,8 +84,7 @@ void testaSelection(int* vetor){
 	tamAtual = TAM_VETOR2; /* VETOR DE 50K */
 
 	printf("Criando vetor de tamanho %d para o Selection Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
-	clock_t start, end;//variáveis do tipo clock_t
+	vetor = vetorRand(vetor, tamAtual);
 	start = clock();//start recebe o "ciclo" corrente
 	numComp = selectionSort(vetor, tamAtual);
 	end = clock();//end recebe o "ciclo" corrente
@@ -98,8 +97,7 @@ void testaSelection(int* vetor){
 	tamAtual = TAM_VETOR3; /* VETOR DE 100K */
 
 	printf("Criando vetor de tamanho %d para o Selection Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
-	clock_t start, end;//variáveis do tipo clock_t
+	vetor = vetorRand(vetor, tamAtual);
 	start = clock();//start recebe o "ciclo" corrente
 	numComp = selectionSort(vetor, tamAtual);
 	end = clock();//end recebe o "ciclo" corrente
@@ -113,9 +111,10 @@ void testaSelection(int* vetor){
 void testaMerge(int* vetor){
 
 	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
+	int numComp;
 
 	printf("Criando vetor de tamanho %d para o Merge Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
+	vetor = vetorRand(vetor, tamAtual);
 	clock_t start, end;//variáveis do tipo clock_t
     double total;
 	start = clock();//start recebe o "ciclo" corrente
@@ -130,8 +129,7 @@ void testaMerge(int* vetor){
 	tamAtual = TAM_VETOR2; /* VETOR DE 50K */
 
 	printf("Criando vetor de tamanho %d para o Merge Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
-	clock_t start, end;//variáveis do tipo clock_t
+	vetor = vetorRand(vetor, tamAtual);
 	start = clock();//start recebe o "ciclo" corrente
 	numComp = mergeSort(vetor, tamAtual);
 	end = clock();//end recebe o "ciclo" corrente
@@ -144,8 +142,7 @@ void testaMerge(int* vetor){
 	tamAtual = TAM_VETOR3; /* VETOR DE 100K */
 
 	printf("Criando vetor de tamanho %d para o Merge Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
-	clock_t start, end;//variáveis do tipo clock_t
+	vetor = vetorRand(vetor, tamAtual);
 	start = clock();//start recebe o "ciclo" corrente
 	numComp = mergeSort(vetor, tamAtual);
 	end = clock();//end recebe o "ciclo" corrente
@@ -159,9 +156,10 @@ void testaMerge(int* vetor){
 void testaQuick(int* vetor){
 
 	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
+	int numComp;
 
 	printf("Criando vetor de tamanho %d para o Quick Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
+	vetor = vetorRand(vetor, tamAtual);
 	clock_t start, end;//variáveis do tipo clock_t
     double total;
 	start = clock();//start recebe o "ciclo" corrente
@@ -176,8 +174,7 @@ void testaQuick(int* vetor){
 	tamAtual = TAM_VETOR2; /* VETOR DE 50K */
 
 	printf("Criando vetor de tamanho %d para o Quick Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
-	clock_t start, end;//variáveis do tipo clock_t
+	vetor = vetorRand(vetor, tamAtual);
 	start = clock();//start recebe o "ciclo" corrente
 	numComp = quickSort(vetor, tamAtual);
 	end = clock();//end recebe o "ciclo" corrente
@@ -190,8 +187,7 @@ void testaQuick(int* vetor){
 	tamAtual = TAM_VETOR3; /* VETOR DE 100K */
 
 	printf("Criando vetor de tamanho %d para o Quick Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
-	clock_t start, end;//variáveis do tipo clock_t
+	vetor = vetorRand(vetor, tamAtual);
 	start = clock();//start recebe o "ciclo" corrente
 	numComp = quickSort(vetor, tamAtual);
 	end = clock();//end recebe o "ciclo" corrente
@@ -205,9 +201,10 @@ void testaQuick(int* vetor){
 void testaHeap(int* vetor){
 
 	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
+	int numComp;
 
 	printf("Criando vetor de tamanho %d para o Heap Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
+	vetor = vetorRand(vetor, tamAtual);
 	clock_t start, end;//variáveis do tipo clock_t
     double total;
 	start = clock();//start recebe o "ciclo" corrente
@@ -222,8 +219,7 @@ void testaHeap(int* vetor){
 	tamAtual = TAM_VETOR2; /* VETOR DE 50K */
 
 	printf("Criando vetor de tamanho %d para o Heap Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
-	clock_t start, end;//variáveis do tipo clock_t
+	vetor = vetorRand(vetor, tamAtual);
 	start = clock();//start recebe o "ciclo" corrente
 	numComp = heapSort(vetor, tamAtual);
 	end = clock();//end recebe o "ciclo" corrente
@@ -236,8 +232,7 @@ void testaHeap(int* vetor){
 	tamAtual = TAM_VETOR3; /* VETOR DE 100K */
 
 	printf("Criando vetor de tamanho %d para o Heap Sort.\n", tamAtual);
-	vetor = vetorRand(vetor);
-	clock_t start, end;//variáveis do tipo clock_t
+	vetor = vetorRand(vetor, tamAtual);
 	start = clock();//start recebe o "ciclo" corrente
 	numComp = heapSort(vetor, tamAtual);
 	end = clock();//end recebe o "ciclo" corrente
@@ -248,17 +243,165 @@ void testaHeap(int* vetor){
 	return;
 }
 
+void testaBuscaSeq(int* vetor, int numComp){
+	int tamAtual = TAM_VETOR1;
+	int idxBusca;
+
+	printf("Criando vetor de tamanho %d para a busca sequencial.\n", tamAtual);
+	vetor = vetorRand(vetor, tamAtual);
+
+	int valorAlvo;
+	valorAlvo = rand() % MAX_VALOR; /* gera um valor aleatório possível para a busca */
+	printf("Valor a ser pesquisado: %d\n", valorAlvo);
+
+	clock_t start, end;//variáveis do tipo clock_t
+    double total;
+	start = clock();//start recebe o "ciclo" corrente
+	idxBusca = buscaSequencial(vetor, tamAtual, valorAlvo, &numComp);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   |   Número de comparações: %d\n", total, numComp);
+	if (idxBusca < 0){
+		printf("Valor não encontrado\n");
+	}
+	else {
+		printf("Valor encontrado no índice %d\n", idxBusca);
+	}
+
+/* =========================================================================================== */
+
+	tamAtual = TAM_VETOR2;
+	numComp = 0;
+
+	printf("Criando vetor de tamanho %d para a busca sequencial.\n", tamAtual);
+	vetor = vetorRand(vetor, tamAtual);
+
+	valorAlvo = rand() % MAX_VALOR;
+	printf("Valor alvo: %d\n", valorAlvo);
+
+	start = clock();//start recebe o "ciclo" corrente
+	idxBusca = buscaSequencial(vetor, tamAtual, valorAlvo, &numComp);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   |   Número de comparações: %d\n", total, numComp);
+	if (idxBusca < 0){
+		printf("Valor não encontrado\n");
+	}
+	else {
+		printf("Valor encontrado no índice %d\n", idxBusca);
+	}
+
+/* =========================================================================================== */
+
+	tamAtual = TAM_VETOR3;
+	numComp = 0;
+
+	printf("Criando vetor de tamanho %d para a busca sequencial.\n", tamAtual);
+	vetor = vetorRand(vetor, tamAtual);
+
+	valorAlvo = rand() % MAX_VALOR;
+	printf("Valor alvo: %d\n", valorAlvo);
+
+	start = clock();//start recebe o "ciclo" corrente
+	idxBusca = buscaSequencial(vetor, tamAtual, valorAlvo, &numComp);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   |   Número de comparações: %d\n", total, numComp);
+	if (idxBusca < 0){
+		printf("Valor não encontrado\n");
+	}
+	else {
+		printf("Valor encontrado no índice %d\n", idxBusca);
+	}
+}
+
+void testaBuscaBinaria(int* vetor, int numComp){
+	int tamAtual = TAM_VETOR1;
+	int idxBusca;
+
+	printf("Criando vetor de tamanho %d para a busca binária.\n", tamAtual);
+	vetor = vetorRand(vetor, tamAtual);
+
+	int valorAlvo;
+	valorAlvo = rand() % MAX_VALOR; /* gera um valor aleatório possível para a busca */
+	printf("Valor a ser pesquisado: %d\n", valorAlvo);
+
+	clock_t start, end;//variáveis do tipo clock_t
+    double total;
+	start = clock();//start recebe o "ciclo" corrente
+	idxBusca = buscaBinaria(vetor, tamAtual, valorAlvo, &numComp);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   |   Número de comparações: %d\n", total, numComp);
+	if (idxBusca < 0){
+		printf("Valor não encontrado.\n");
+	}
+	else {
+		printf("Valor encontrado.\n");
+	}
+
+/* =========================================================================================== */
+
+	tamAtual = TAM_VETOR2;
+	numComp = 0;
+
+	printf("Criando vetor de tamanho %d para a busca binária.\n", tamAtual);
+	vetor = vetorRand(vetor, tamAtual);
+
+	valorAlvo = rand() % MAX_VALOR;
+	printf("Valor alvo: %d\n", valorAlvo);
+
+	start = clock();//start recebe o "ciclo" corrente
+	idxBusca = buscaBinaria(vetor, tamAtual, valorAlvo, &numComp);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   |   Número de comparações: %d\n", total, numComp);
+	if (idxBusca < 0){
+		printf("Valor não encontrado.\n");
+	}
+	else {
+		printf("Valor encontrado.\n");
+	}
+
+/* =========================================================================================== */
+
+	tamAtual = TAM_VETOR3;
+	numComp = 0;
+
+	printf("Criando vetor de tamanho %d para a busca binária.\n", tamAtual);
+	vetor = vetorRand(vetor, tamAtual);
+
+	valorAlvo = rand() % MAX_VALOR;
+	printf("Valor alvo: %d\n", valorAlvo);
+
+	start = clock();//start recebe o "ciclo" corrente
+	idxBusca = buscaBinaria(vetor, tamAtual, valorAlvo, &numComp);
+	end = clock();//end recebe o "ciclo" corrente
+	//o tempo total é a diferença dividia pelos ciclos por segundo
+	total = ((double)end - start)/CLOCKS_PER_SEC;
+	printf("Tempo total: %f   |   Número de comparações: %d\n", total, numComp);
+	if (idxBusca < 0){
+		printf("Valor não encontrado.\n");
+	}
+	else {
+		printf("Valor encontrado.\n");
+	}
+}
 
 int main(){
 	char nome[MAX_CHAR_NOME];
 	char nome2[MAX_CHAR_NOME];
-	int idxBusca;
 	int numComp;
 	//int numComparacoes;
 
 	//Dica: somente é posśivel criar vetores grandes utilizando alocação dinâmica de memória
 	//Veja um exemplo de alocação dinâmica a seguir
-	int* vetor = malloc(TAM * sizeof(int));
+	int* vetor = malloc(TAM_VETOR3 * sizeof(int));
 	if(vetor == NULL){
 		printf("Falha fatal. Impossível alocar memoria.");
 		return -1;
@@ -267,8 +410,7 @@ int main(){
 	//Não esqueça de desalocar no final do programa via free
 
 
-	getNome(nome);
-	getNome(nome2);
+	getNome(nome, nome2);
 	printf("Trabalho de %s e %s \n", nome, nome2);
 	printf("GRR %u, GRR %u \n", getGRR1(), getGRR2());
 
@@ -281,11 +423,8 @@ int main(){
 	testaQuick(vetor);
 	testaHeap(vetor);
 
-	idxBusca = buscaSequencial(vetor, 3, 10, &numComp);
-	idxBusca = buscaBinaria(vetor, 3, 10, &numComp);
-
-	printf("\n%d %d", idxBusca, numComp);
-	printf("\n");
+	testaBuscaSeq(vetor, numComp);
+	testaBuscaBinaria(vetor, numComp);
 
 	//É obrigatório que você libere a memória alocada dinamicamente via free
 	free(vetor);
