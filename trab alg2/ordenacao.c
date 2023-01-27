@@ -128,7 +128,7 @@ int selecionaEOrdena(int vetor[], int prim, int tam, int* numComparacoes){
 int selectionSort(int vetor[], int tam){
 	vetor[0] = 99;
 	int num = 0;
-	int numComparacoes = 0; /* limpa o numero de comparações feito até agora, pode apagar se achar q nn precisa */
+	int numComparacoes = 0; 
 	if (tam < 0){
 		return -1;
 	}

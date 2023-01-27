@@ -16,39 +16,49 @@ void imprimeVetor(int *vetor, int tam){
 	printf("\n");
 }
 
-int minimoVetor(int vetor[], int a, int b, int *numComparacoes){ /* usando no selectionsort */
-	if (a == b){
-		return a;
+int* intercala(int* vetor, int ini, int meio, int tam, int *numComparacoes){ /* usado para mergesort */
+	if (tam <= ini){
+		return vetor;
 	}
-	int m = minimoVetor(vetor, a, b-1, numComparacoes);
-	if (vetor[b] < vetor[m]){
-		m = b;
+	int i = ini;
+	int j = meio++;
+	int k;
+	int u[tam];
+	for (k = 0; k < tam; ++k)
+	{
+		(*numComparacoes)++;
+		if ((j > tam) || ((i <= meio) && (vetor[i] <= vetor[j]))){
+			u[k] = vetor[i];
+			i++;
+		}
+		else{
+			u[k] = vetor[j];
+			j++;
+		}
 	}
-	(*numComparacoes)++;
-	return m;
+	vetor = u;
+	return vetor;
 }
 
-int selecionaEOrdena(int vetor[], int prim, int tam, int* numComparacoes){
-	if (prim >= tam){
-		return *numComparacoes;
-	}
-	int min = minimoVetor(vetor, prim, tam, numComparacoes);
-	troca(vetor, prim, min);
-	return selecionaEOrdena(vetor, prim+1, tam, numComparacoes);
+int* ordenaMerge(int *vetor, int ini, int tam, int *numComparacoes){
+	if (tam <= ini){
+		return vetor;
+	} 
+	int meio;
+	meio = ((tam + ini)/2);
+	ordenaMerge(vetor, ini, meio, numComparacoes);
+	ordenaMerge(vetor, meio + 1, tam, numComparacoes);
+	return intercala(vetor, ini, meio, tam, numComparacoes);
 }
 
-int selectionSort(int vetor[], int tam){
+int mergeSort(int vetor[], int tam){
 	vetor[0] = 99;
-	int num = 0;
-	int numComparacoes = 0; /* limpa o numero de comparações feito até agora, pode apagar se achar q nn precisa */
-	if (tam < 0){
+	int numComparacoes = 0;
+	if (tam <= 0){
 		return -1;
-	}
-	else { /* isso aqui é um wrapper; tudo eh feito no selecionaEOrdena */
-		num = selecionaEOrdena(vetor, 0, tam, &numComparacoes);
-		return numComparacoes;
-	}
-	return -1;
+	} /* wrapper dnv! */
+	ordenaMerge(&vetor, 0, tam, &numComparacoes);
+	return numComparacoes;
 }
 
 
@@ -57,7 +67,7 @@ int main(){
     int num;
 	printf("-vetor desordenado: ");
 	imprimeVetor(vetor, 11);
-    num = selectionSort(vetor, 11);
+    num = mergeSort(vetor, 11);
 	printf("----vetor ordenado: ");
 	imprimeVetor(vetor, 11);
 	printf("num comp: %d \n", num);
