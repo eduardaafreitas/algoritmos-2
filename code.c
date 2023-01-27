@@ -1,13 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void troca(int *vetor, int i, int j){
-	int aux;
-	aux = vetor[i];
-	vetor[i] = vetor[j];
-	vetor[j] = aux;
-}
-
 void imprimeVetor(int *vetor, int tam){
 	int i;
 	for(i = 0; i < tam; i++){
@@ -16,16 +9,16 @@ void imprimeVetor(int *vetor, int tam){
 	printf("\n");
 }
 
-int* intercala(int* vetor, int ini, int meio, int tam, int *numComparacoes){ /* usado para mergesort */
+void intercala(int* vetor, int ini, int meio, int tam, int *numComparacoes){ /* usado para mergesort */
 	if (tam <= ini){
-		return vetor;
+		return;
 	}
 	int i = ini;
-	int j = meio++;
-	int k;
-	int u[tam];
-	for (k = 0; k < tam; ++k)
-	{
+	int j = meio+1;
+	int k = 0;
+	int fimU = tam - ini+1;
+	int u[fimU];
+	for (k = 0; k < fimU; k++){
 		(*numComparacoes)++;
 		if ((j > tam) || ((i <= meio) && (vetor[i] <= vetor[j]))){
 			u[k] = vetor[i];
@@ -36,19 +29,20 @@ int* intercala(int* vetor, int ini, int meio, int tam, int *numComparacoes){ /* 
 			j++;
 		}
 	}
-	vetor = u;
-	return vetor;
+	for (k = 0; k < tam - ini + 1; k++){
+        vetor[ini + k] = u[k];
+	}
 }
 
-int* ordenaMerge(int *vetor, int ini, int tam, int *numComparacoes){
-	if (tam <= ini){
-		return vetor;
+void ordenaMerge(int *vetor, int ini, int tam, int *numComparacoes){
+	if (ini >= tam){
+		return;
 	} 
 	int meio;
 	meio = ((tam + ini)/2);
 	ordenaMerge(vetor, ini, meio, numComparacoes);
 	ordenaMerge(vetor, meio + 1, tam, numComparacoes);
-	return intercala(vetor, ini, meio, tam, numComparacoes);
+	intercala(vetor, ini, meio, tam, numComparacoes);
 }
 
 int mergeSort(int vetor[], int tam){
@@ -57,7 +51,7 @@ int mergeSort(int vetor[], int tam){
 	if (tam <= 0){
 		return -1;
 	} /* wrapper dnv! */
-	ordenaMerge(&vetor, 0, tam, &numComparacoes);
+	ordenaMerge(vetor, 1, tam-1, &numComparacoes);
 	return numComparacoes;
 }
 

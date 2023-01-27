@@ -139,18 +139,18 @@ int selectionSort(int vetor[], int tam){
 	return -1;
 }
 
-int* intercala(int* vetor, int ini, int meio, int tam){ /* usado para mergesort */
+void intercala(int* vetor, int ini, int meio, int tam, int *numComparacoes){ /* usado para mergesort */
 	if (tam <= ini){
-		return vetor;
+		return;
 	}
 	int i = ini;
-	int j = meio++;
-	int k;
-	int u[tam];
-	for (k = 0; k < tam; ++k)
-	{
-		numComparacoes++;
-		if (j > b) || (i <= meio && vetor[i] <= vetor[j]){
+	int j = meio+1;
+	int k = 0;
+	int fimU = tam - ini+1;
+	int u[fimU];
+	for (k = 0; k < fimU; k++){
+		(*numComparacoes)++;
+		if ((j > tam) || ((i <= meio) && (vetor[i] <= vetor[j]))){
 			u[k] = vetor[i];
 			i++;
 		}
@@ -159,27 +159,29 @@ int* intercala(int* vetor, int ini, int meio, int tam){ /* usado para mergesort 
 			j++;
 		}
 	}
-	vetor = u;
-	return vetor;
+	for (k = 0; k < tam - ini + 1; k++){
+        vetor[ini + k] = u[k];
+	}
 }
 
-void ordenaMerge(int vetor[], int ini, int tam){
-	if (tam <= ini){
-		return *vetor;
-	}
+void ordenaMerge(int *vetor, int ini, int tam, int *numComparacoes){
+	if (ini >= tam){
+		return;
+	} 
 	int meio;
-	meio = ((tam + ini) div 2);
-	ordenaMerge(vetor, ini, meio);
-	ordenaMerge(vetor, meio + 1, tam);
-	return intercala(vetor, ini, meio, tam);
+	meio = ((tam + ini)/2);
+	ordenaMerge(vetor, ini, meio, numComparacoes);
+	ordenaMerge(vetor, meio + 1, tam, numComparacoes);
+	intercala(vetor, ini, meio, tam, numComparacoes);
 }
 
 int mergeSort(int vetor[], int tam){
 	vetor[0] = 99;
+	int numComparacoes = 0;
 	if (tam <= 0){
 		return -1;
 	} /* wrapper dnv! */
-	ordenaMerge(vetor, 0, tam);
+	ordenaMerge(vetor, 1, tam-1, &numComparacoes);
 	return numComparacoes;
 }
 
