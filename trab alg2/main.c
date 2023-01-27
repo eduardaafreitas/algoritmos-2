@@ -5,7 +5,9 @@
 #include "ordenacao.h"
 #include "libOrd.h"
 
-#define TAM_VETOR 10000 /* tamanho do vetor */
+#define TAM_VETOR1 10000 /* tamanho do vetor */
+#define TAM_VETOR2 50000 /* tamanho do vetor */
+#define TAM_VETOR3 100000 /* tamanho do vetor */
 #define MAX_VALOR 32768 /* 2^15; valor max q um numero pode assumir */
 
 int* vetorRand(int* vetor){
@@ -15,6 +17,7 @@ int* vetorRand(int* vetor){
 	}
 	return vetor;
 }
+
 
 int main(){
 	char nome[MAX_CHAR_NOME];

@@ -36,17 +36,6 @@ int minimoVetor(int vetor[], int a, int b){ /* usando no selectionsort */
 	return m;
 }
 
-//FALTA FAZER ESSA MERDA DE INSERTION SORT FUNCIONAR (e tb testar todos os outros)
-
-int* insereOrdenado(int *vetor, int tam, int valor, int* numComparacoes){
-	int p, i;
-	p = buscaSequencial(vetor, tam-1, valor, numComparacoes);
-	while(i > p+1){
-		troca(vetor, i, i-1);
-		i--;
-	}
-	return vetor;
-}
 
 void imprimeVetor(int *vetor, int tam){
 	int i;
@@ -99,18 +88,29 @@ int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){			//colo
 	return -1;
 }
 
-
+void ordenaInsertion(int vetor[], int tam, int* numComparacoes){
+    if (tam == 0){
+		return;
+	}
+    ordenaInsertion(vetor, tam-1, numComparacoes);
+ 
+    int ultimo = vetor[tam-1];
+    int j = tam-2;
+    while (j >= 0 && vetor[j] > ultimo){
+        vetor[j+1] = vetor[j];
+		(*numComparacoes)++;
+        j--;
+    }
+    vetor[j+1] = ultimo;
+}
 
 int insertionSort(int vetor[], int tam){	
-	vetor[0] = 99;
+	int numComparacoes = 0;
 	if(tam == 0){
 		return -1;
 	}
 	else{
-		numComparacoes++;
-		insertionSort(vetor, tam-1, valor, numComparacoes);
-		insereOrdenado(&vetor, tam, valor, numComparacoes);
-		imprimeVetor(vetor, tam);
+		ordenaInsertion(vetor, tam-1, &numComparacoes);	//wrapper
 		return numComparacoes;
 	}
 	return -1;
