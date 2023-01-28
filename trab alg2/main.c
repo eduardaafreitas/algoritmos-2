@@ -32,7 +32,7 @@ void testaInsertion(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 /* ================================================================================ */
 
@@ -45,7 +45,7 @@ void testaInsertion(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 /* ================================================================================ */
 
@@ -58,7 +58,7 @@ void testaInsertion(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 	return;
 }
@@ -77,7 +77,7 @@ void testaSelection(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 /* ================================================================================ */
 
@@ -90,7 +90,7 @@ void testaSelection(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 /* ================================================================================ */
 
@@ -103,7 +103,7 @@ void testaSelection(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 	return;
 }
@@ -122,7 +122,7 @@ void testaMerge(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 /* ================================================================================ */
 
@@ -135,7 +135,7 @@ void testaMerge(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 /* ================================================================================ */
 
@@ -148,7 +148,7 @@ void testaMerge(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 	return;
 }
@@ -167,7 +167,7 @@ void testaQuick(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 /* ================================================================================ */
 
@@ -180,7 +180,7 @@ void testaQuick(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 /* ================================================================================ */
 
@@ -193,7 +193,7 @@ void testaQuick(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 	return;
 }
@@ -212,7 +212,7 @@ void testaHeap(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 /* ================================================================================ */
 
@@ -225,7 +225,7 @@ void testaHeap(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 /* ================================================================================ */
 
@@ -238,7 +238,7 @@ void testaHeap(int* vetor){
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
-	printf("Tempo total: %f   | Número de comparações: %d \n", total, numComp);
+	printf("Tempo total: %f   | Número de comparações: %d \n\n", total, numComp);
 
 	return;
 }
@@ -263,10 +263,10 @@ void testaBuscaSeq(int* vetor, int numComp){
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("Tempo total: %f   |   Número de comparações: %d\n", total, numComp);
 	if (idxBusca < 0){
-		printf("Valor não encontrado\n");
+		printf("Valor não encontrado\n\n");
 	}
 	else {
-		printf("Valor encontrado no índice %d\n", idxBusca);
+		printf("Valor encontrado no índice %d\n\n", idxBusca);
 	}
 
 /* =========================================================================================== */
@@ -287,10 +287,10 @@ void testaBuscaSeq(int* vetor, int numComp){
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("Tempo total: %f   |   Número de comparações: %d\n", total, numComp);
 	if (idxBusca < 0){
-		printf("Valor não encontrado\n");
+		printf("Valor não encontrado\n\n");
 	}
 	else {
-		printf("Valor encontrado no índice %d\n", idxBusca);
+		printf("Valor encontrado no índice %d\n\n", idxBusca);
 	}
 
 /* =========================================================================================== */
@@ -311,10 +311,10 @@ void testaBuscaSeq(int* vetor, int numComp){
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("Tempo total: %f   |   Número de comparações: %d\n", total, numComp);
 	if (idxBusca < 0){
-		printf("Valor não encontrado\n");
+		printf("Valor não encontrado\n\n");
 	}
 	else {
-		printf("Valor encontrado no índice %d\n", idxBusca);
+		printf("Valor encontrado no índice %d\n\n", idxBusca);
 	}
 }
 
@@ -338,10 +338,10 @@ void testaBuscaBinaria(int* vetor, int numComp){
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("Tempo total: %f   |   Número de comparações: %d\n", total, numComp);
 	if (idxBusca < 0){
-		printf("Valor não encontrado.\n");
+		printf("Valor não encontrado.\n\n");
 	}
 	else {
-		printf("Valor encontrado.\n");
+		printf("Valor encontrado.\n\n");
 	}
 
 /* =========================================================================================== */
@@ -362,10 +362,10 @@ void testaBuscaBinaria(int* vetor, int numComp){
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("Tempo total: %f   |   Número de comparações: %d\n", total, numComp);
 	if (idxBusca < 0){
-		printf("Valor não encontrado.\n");
+		printf("Valor não encontrado.\n\n");
 	}
 	else {
-		printf("Valor encontrado.\n");
+		printf("Valor encontrado.\n\n");
 	}
 
 /* =========================================================================================== */
@@ -386,10 +386,10 @@ void testaBuscaBinaria(int* vetor, int numComp){
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("Tempo total: %f   |   Número de comparações: %d\n", total, numComp);
 	if (idxBusca < 0){
-		printf("Valor não encontrado.\n");
+		printf("Valor não encontrado.\n\n");
 	}
 	else {
-		printf("Valor encontrado.\n");
+		printf("Valor encontrado.\n\n");
 	}
 }
 
@@ -412,7 +412,7 @@ int main(){
 
 	getNome(nome, nome2);
 	printf("Trabalho de %s e %s \n", nome, nome2);
-	printf("GRR %u, GRR %u \n", getGRR1(), getGRR2());
+	printf("GRR %u, GRR %u \n\n", getGRR1(), getGRR2());
 
 /*	getNome(nome2);
 	printf("Trabalho de %s\n", nome2);
