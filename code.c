@@ -9,51 +9,63 @@ void imprimeVetor(int *vetor, int tam){
 	printf("\n");
 }
 
-void intercala(int* vetor, int ini, int meio, int tam, int *numComparacoes){ /* usado para mergesort */
-	if (tam <= ini){
-		return;
+void troca(int *vetor, int i, int j){
+	int aux;
+	aux = vetor[i];
+	vetor[i] = vetor[j];
+	vetor[j] = aux;
+}
+
+void maxHeapify(int vetor[], int tam, int ini, int *numComparacoes){
+	int esq, dir, maior;
+	maior = ini;
+	esq = ((2*ini) + 1);
+	dir = ((2*ini) + 2);
+	if(esq < tam && vetor[esq] > vetor[maior]){
+		numComparacoes++;
+		maior = esq;
 	}
-	int i = ini;
-	int j = meio+1;
-	int k = 0;
-	int fimU = tam - ini+1;
-	int u[fimU];
-	for (k = 0; k < fimU; k++){
-		(*numComparacoes)++;
-		if ((j > tam) || ((i <= meio) && (vetor[i] <= vetor[j]))){
-			u[k] = vetor[i];
-			i++;
-		}
-		else{
-			u[k] = vetor[j];
-			j++;
-		}
+	else {
+		maior = ini;
 	}
-	for (k = 0; k < tam - ini + 1; k++){
-        vetor[ini + k] = u[k];
+
+	if(dir < tam && vetor[dir] > vetor[maior]){
+		numComparacoes++;
+		maior = dir;
+	}
+	if(maior != ini){
+		maxHeapify(vetor, tam, maior, numComparacoes);
+		troca(vetor, ini, maior);
 	}
 }
 
-void ordenaMerge(int *vetor, int ini, int tam, int *numComparacoes){
-	if (ini >= tam){
-		return;
-	} 
-	int meio;
-	meio = ((tam + ini)/2);
-	ordenaMerge(vetor, ini, meio, numComparacoes);
-	ordenaMerge(vetor, meio + 1, tam, numComparacoes);
-	intercala(vetor, ini, meio, tam, numComparacoes);
+void buildMaxHeapify(int vetor[], int tam, int *numComparacoes){
+	int i;
+	for(i = (tam/2)-1; i >= 0; i--){
+		maxHeapify(vetor, tam, i, numComparacoes);
+	}
 }
 
-int mergeSort(int vetor[], int tam){
+void ordenaHeap(int vetor[], int tam, int *numComparacoes){
+	buildMaxHeapify(vetor, tam, numComparacoes);
+	int i;
+	int meio = tam/2;
+	for(i = meio-1; i>= 1; i--){
+		troca(vetor, 1, i);
+		maxHeapify(vetor, i, 1, numComparacoes);
+	}
+}
+
+int heapSort(int vetor[], int tam){
 	vetor[0] = 99;
 	int numComparacoes = 0;
-	if (tam <= 0){
+	if(tam <= 0){
 		return -1;
-	} /* wrapper dnv! */
-	ordenaMerge(vetor, 1, tam-1, &numComparacoes);
+	} /*wrapper aqui!*/
+	ordenaHeap(vetor, tam, &numComparacoes);
 	return numComparacoes;
 }
+
 
 
 int main(){
@@ -61,7 +73,7 @@ int main(){
     int num;
 	printf("-vetor desordenado: ");
 	imprimeVetor(vetor, 11);
-    num = mergeSort(vetor, 11);
+    num = heapSort(vetor, 11);
 	printf("----vetor ordenado: ");
 	imprimeVetor(vetor, 11);
 	printf("num comp: %d \n", num);

@@ -185,7 +185,7 @@ int mergeSort(int vetor[], int tam){
 	return numComparacoes;
 }
 
-int particiona(int vetor[], int tam, int pivo){
+int particiona(int vetor[], int tam, int pivo, int *numComparacoes){
 	int meio;
 	int i, ini;
 	ini = 1; // começo do vetor
@@ -193,29 +193,30 @@ int particiona(int vetor[], int tam, int pivo){
 	for(i = ini; i < tam; i++){
 		if(vetor[i] <= pivo){
 			meio++;
-			troca(&vetor, meio, i);
-			numComparacoes++;
+			troca(vetor, meio, i);
+			(*numComparacoes)++;
 		}
 	}
 	return meio;
 }
 
-void ordenaQuick(int vetor[], int ini, int tam){
-	if (tam <= ini){
-		return *vetor;
+void ordenaQuick(int vetor[], int ini, int tam, int *numComparacoes){
+	if (ini >= tam){
+		return;
 	}
-	int meio
-	meio = particiona(vetor, ini, tam, vetor[tam]);
-	ordenaQuick(vetor, ini, meio-1);
-	ordenaQuick(vetor, meio+1, tam);
+	//int meio
+	int meio = particiona(vetor, tam+1, vetor[tam], numComparacoes);
+	ordenaQuick(vetor, ini, meio-1, numComparacoes);
+	ordenaQuick(vetor, meio+1, tam, numComparacoes);
 }
 
 int quickSort(int vetor[], int tam){
 	vetor[0] = 99;
+	int numComparacoes = 0;
 	if(tam <= 0){
-		return -1
+		return -1;
 	} /*wrapper aqui!*/
-	ordenaQuick(vetor, 0, tam);
+	ordenaQuick(vetor, 1, tam, &numComparacoes);
 	return numComparacoes;
 }
 
