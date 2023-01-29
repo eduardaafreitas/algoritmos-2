@@ -21,7 +21,7 @@ int* vetorRand(int* vetor, int tamAtual){
 void testaInsertion(int* vetor){
 
 	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
-	int numComp;
+	unsigned int numComp;
 
 	printf("Criando vetor de tamanho %d para o Insertion Sort.\n", tamAtual);
 	vetor = vetorRand(vetor, tamAtual);
@@ -66,7 +66,7 @@ void testaInsertion(int* vetor){
 void testaSelection(int* vetor){
 
 	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
-	int numComp;
+	unsigned int numComp;
 
 	printf("Criando vetor de tamanho %d para o Selection Sort.\n", tamAtual);
 	vetor = vetorRand(vetor, tamAtual);
@@ -111,7 +111,7 @@ void testaSelection(int* vetor){
 void testaMerge(int* vetor){
 
 	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
-	int numComp;
+	unsigned int numComp;
 
 	printf("Criando vetor de tamanho %d para o Merge Sort.\n", tamAtual);
 	vetor = vetorRand(vetor, tamAtual);
@@ -156,7 +156,7 @@ void testaMerge(int* vetor){
 void testaQuick(int* vetor){
 
 	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
-	int numComp;
+	unsigned int numComp;
 
 	printf("Criando vetor de tamanho %d para o Quick Sort.\n", tamAtual);
 	vetor = vetorRand(vetor, tamAtual);
@@ -201,7 +201,7 @@ void testaQuick(int* vetor){
 void testaHeap(int* vetor){
 
 	int tamAtual = TAM_VETOR1; /* VETOR DE 10K */
-	int numComp;
+	unsigned int numComp;
 
 	printf("Criando vetor de tamanho %d para o Heap Sort.\n", tamAtual);
 	vetor = vetorRand(vetor, tamAtual);
@@ -332,7 +332,9 @@ void testaBuscaBinaria(int* vetor, int numComp){
 	clock_t start, end;//variáveis do tipo clock_t
     double total;
 	start = clock();//start recebe o "ciclo" corrente
-	idxBusca = buscaBinaria(vetor, tamAtual, valorAlvo, &numComp);
+	if (mergeSort(vetor, tamAtual)){
+		idxBusca = buscaBinaria(vetor, tamAtual, valorAlvo, &numComp);
+	}
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
@@ -356,7 +358,9 @@ void testaBuscaBinaria(int* vetor, int numComp){
 	printf("Valor alvo: %d\n", valorAlvo);
 
 	start = clock();//start recebe o "ciclo" corrente
-	idxBusca = buscaBinaria(vetor, tamAtual, valorAlvo, &numComp);
+	if (mergeSort(vetor, tamAtual)){
+		idxBusca = buscaBinaria(vetor, tamAtual, valorAlvo, &numComp);
+	}
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
@@ -380,7 +384,9 @@ void testaBuscaBinaria(int* vetor, int numComp){
 	printf("Valor alvo: %d\n", valorAlvo);
 
 	start = clock();//start recebe o "ciclo" corrente
-	idxBusca = buscaBinaria(vetor, tamAtual, valorAlvo, &numComp);
+	if (mergeSort(vetor, tamAtual)){
+		idxBusca = buscaBinaria(vetor, tamAtual, valorAlvo, &numComp);
+	}
 	end = clock();//end recebe o "ciclo" corrente
 	//o tempo total é a diferença dividia pelos ciclos por segundo
 	total = ((double)end - start)/CLOCKS_PER_SEC;
@@ -396,7 +402,7 @@ void testaBuscaBinaria(int* vetor, int numComp){
 int main(){
 	char nome[MAX_CHAR_NOME];
 	char nome2[MAX_CHAR_NOME];
-	int numComp;
+	unsigned int numComp = 0;
 	//int numComparacoes;
 
 	//Dica: somente é posśivel criar vetores grandes utilizando alocação dinâmica de memória

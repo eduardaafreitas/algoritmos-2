@@ -19,5 +19,6 @@ void maxHeapify(int vetor[], int tam, int ini, int *numComparacoes);
 void buildMaxHeapify(int vetor[], int tam, int *numComparacoes);
 void ordenaHeap(int vetor[], int tam, int *numComparacoes);
 
+int buscaBinIniFim(int *vetor, int valor, int ini, int fim, int* numComp);
 
 #endif

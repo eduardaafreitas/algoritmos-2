@@ -24,7 +24,6 @@ void troca(int *vetor, int i, int j){
 	vetor[j] = aux;
 }
 
-
 void imprimeVetor(int *vetor, int tam){
 	int i;
 	for(i = 0; i < tam; i++){
@@ -35,12 +34,11 @@ void imprimeVetor(int *vetor, int tam){
 
 //---------------------------------------------------------------------------------------------------------
 int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
-
 	if (tam == 0){
 		return -1;
 	}
 	else {
-		numComparacoes++;
+		*numComparacoes = *numComparacoes + 1;
 		if (valor == vetor[tam]){
 			return tam;
 		}
@@ -51,30 +49,32 @@ int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
 
 }
 
-int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){			//colocar alg ordenação
-	int meio;
-	meio = tam/2;
-	if (tam == 0){
+// -----------------------------------------------------------------------------------------------
+
+int buscaBinIniFim(int *vetor, int valor, int ini, int fim, int* numComp){
+	if (fim < ini){
 		return -1;
 	}
-	else {
-		numComparacoes++;
-		if (valor == vetor[meio]){
-			return meio;
-		}
-		else if (valor < vetor[meio]){
-			numComparacoes++;
-			meio--;
-			buscaBinaria(vetor, meio, valor, numComparacoes);
-		}
-		else if (valor > vetor[meio]){
-			numComparacoes++;
-			meio++;
-			buscaBinaria(vetor, meio, valor, numComparacoes);
-		}
+	int meio = (ini + fim) / 2;
+	*numComp = *numComp + 1; /*fazendo antes da comparação p garantir que conta*/
+	if (valor == vetor[meio]){
+		return meio;
 	}
-	return -1;
+	*numComp = *numComp + 1;
+	if (valor < vetor[meio]){
+		return buscaBinIniFim(vetor, valor, ini, meio-1, numComp);
+	}
+	return buscaBinIniFim(vetor, valor, meio+1, fim, numComp);
 }
+
+int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes){			//colocar alg ordenação
+	/* vai ser wrapper */
+	if (tam <=0){
+		return -1;
+	}
+	return buscaBinIniFim(vetor, valor, 0, tam, numComparacoes);
+}
+
 //---------------------------------------------------------------------------------------------------------
 void ordenaInsertion(int vetor[], int tam, int* numComparacoes){
     if (tam == 0){
@@ -126,15 +126,15 @@ int selecionaEOrdena(int vetor[], int prim, int tam, int* numComparacoes){
 }
 
 int selectionSort(int vetor[], int tam){
-	vetor[0] = 99;
-	int num = 0;
-	int numComparacoes = 0; 
 	if (tam < 0){
 		return -1;
 	}
 	else { /* isso aqui é um wrapper; tudo eh feito no selecionaEOrdena */
+		vetor[0] = 99;
+		int numComparacoes = 0; 
+		int num;
 		num = selecionaEOrdena(vetor, 0, tam, &numComparacoes);
-		return numComparacoes;
+		return num;
 	}
 	return -1;
 }
