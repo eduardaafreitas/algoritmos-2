@@ -403,6 +403,7 @@ int main(){
 	char nome[MAX_CHAR_NOME];
 	char nome2[MAX_CHAR_NOME];
 	unsigned int numComp = 0;
+	srand(clock()); // gera seeds diferentes sempre q rodar
 	//int numComparacoes;
 
 	//Dica: somente é posśivel criar vetores grandes utilizando alocação dinâmica de memória
