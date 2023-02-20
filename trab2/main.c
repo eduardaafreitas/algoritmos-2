@@ -62,6 +62,8 @@ void papaiNoelUtil(struct Presentes* lista_final, struct Presentes* saco, int p_
 	if (pesoAtual(lista_final, n) <= p_max && L == linha_final_arvore){ 
 		printf("Imprimindo a lista final de presentes enviados: \n");
 		imprimeLista(lista_final, n);
+		printf("Soma total do valor sentimental: ");
+		valorSentTotal(lista_final, n);
 		return;
 	}
 	/* inserir um presente na lista final e testar se "cabe" */
@@ -86,6 +88,17 @@ int pesoAtual (struct Presentes* lista_atual, int tam_lista){
 		total = total + lista_atual[i].peso;
 	}
 	return total;
+}
+
+/* imprime o valor sentimental total na lista de presentes */
+void valorSentTotal (struct Presentes* lista_atual, int tam_lista){
+	int i;
+	int total = 0;
+	for (int i = 0; i <= tam_lista; ++i){
+		total = total + lista_atual[i].valor_s;
+	}
+	printf("%d \n", total);
+	return;
 }
 
 int isSafe(int p_max, int p_atual){
