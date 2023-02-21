@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 /*
 n: presentes disponiveis
 p_max: capacidade
@@ -42,35 +43,6 @@ void insertionSort(struct Presentes* lista_atual, int tam){
 
 /* ============================================================================================== */
 
-int papaiNoel(struct Presentes* saco, int n, int p_max){
-
-	struct Presentes* lista_final; /* o lista_final irá conter os presentes q serão enviados ao fim :P */
-	lista_final = malloc(n * sizeof(struct Presentes));
-	if (lista_final == NULL){
-		printf("Erro na alocação! Encerrando... \n");
-		return -1;
-	}
-
-	insertionSort(saco, n); /* ordena os presentes do saco por valor sentimental */
-	/* A FAZER AQUI: calculo da arvore? pra descobrir quantidade de linhas nela */
-	return 1;
-}
-
-void papaiNoelUtil(struct Presentes* lista_final, struct Presentes* saco, int p_max, int n, int L, int linha_final_arvore){
-
-	/* CASO BASE: se o peso eh menor ou igual a p_max, e chegou ao fim da arvore, retorna*/
-	if (pesoAtual(lista_final, n) <= p_max && L == linha_final_arvore){ 
-		printf("Imprimindo a lista final de presentes enviados: \n");
-		imprimeLista(lista_final, n);
-		printf("Soma total do valor sentimental: ");
-		valorSentTotal(lista_final, n);
-		return;
-	}
-	/* inserir um presente na lista final e testar se "cabe" */
-	/* se não cabe, subir um ramo da árvore e testar o proximo presente mais valoroso */
-	return;
-}
-
 void imprimeLista(struct Presentes* lista_final, int tam){ /* eh um imprimevetor adaptado */
 	int i;
 	for(i = 0; i < tam; i++){
@@ -87,6 +59,7 @@ int pesoAtual (struct Presentes* lista_atual, int tam_lista){
 	for (int i = 0; i <= tam_lista; ++i){
 		total = total + lista_atual[i].peso;
 	}
+	printf("Peso medido. Valor: %d \n", total);
 	return total;
 }
 
@@ -104,6 +77,65 @@ void valorSentTotal (struct Presentes* lista_atual, int tam_lista){
 int isSafe(int p_max, int p_atual){
 	return (p_max >= p_atual); /* 1 se o p_max for igual ou maior q o peso atual (nao excedeu capacidade de peso) */
 }
+
+void papaiNoelUtil(struct Presentes* lista_final, struct Presentes* saco, int p_max, int n, int l, int num_linhas, int i, int j){
+
+	/* CASO BASE: se o peso eh menor ou igual a p_max, e chegou ao fim da arvore, retorna*/
+	if (pesoAtual(lista_final, n) <= p_max && l == num_linhas || (i >= n)){ 
+		printf("Imprimindo a lista final de presentes enviados: \n");
+		imprimeLista(lista_final, n);
+		printf("Soma total do valor sentimental: ");
+		valorSentTotal(lista_final, n);
+		return;
+	}
+
+	/* se chegou ao fim e nn cumpre a expectativa, mas nn eh o fim do saco: */
+	else if (pesoAtual(lista_final, n) > p_max && l == num_linhas && ((j + 1) != n)){
+		printf("Peso excedido: caso 1! Subindo. \n");
+		lista_final[i].peso = 0;
+		lista_final[i].valor_s = 0;
+		l = l - 1; /* sobe uma linha */
+		papaiNoelUtil(lista_final, saco, p_max, n, l, num_linhas, i, j + 1); /* chama dnv e avança 1 pra frente */
+	}
+	/* se tiver q tirar presentes anteriores: */
+	else if (pesoAtual(lista_final, n) > p_max && l == num_linhas && ((i+1) == n) && ((j + 1) != n)){
+		printf("Peso excedido: caso 2! Subindo. \n");
+		l = l - 1;
+		lista_final[i].peso = 0;
+		lista_final[i].valor_s = 0;
+		i = i - 1;
+		papaiNoelUtil(lista_final, saco, p_max, n, l, num_linhas, i, j+1);
+	}
+
+	lista_final[i].peso = saco[j].peso;
+	lista_final[i].valor_s = saco[j].valor_s;
+	printf("Lista atual: \n");
+	imprimeLista(lista_final, n);
+	l = l + 1;
+	papaiNoelUtil(lista_final, saco, p_max, n, l, num_linhas, i+1, j+1);
+	return;
+}
+
+
+void papaiNoel(struct Presentes* saco, int n, int p_max){
+
+	struct Presentes* lista_final; /* o lista_final irá conter os presentes q serão enviados ao fim :P */
+	lista_final = malloc(n * sizeof(struct Presentes));
+	if (lista_final == NULL){
+		printf("Erro na alocação! Encerrando... \n");
+		return;
+	}
+
+	insertionSort(saco, n); /* ordena os presentes do saco por valor sentimental */
+
+	int num_linhas;
+	num_linhas = (int)(floor(log2((double)n))); /* altura da arvore = piso de log2 de n*/
+	printf("Número de linhas na árvore: %d \n", num_linhas);
+
+	papaiNoelUtil(lista_final, saco, p_max, n, 0, num_linhas, 0, 0);
+	return;
+}
+
 
 int main(){
 	int n;
@@ -129,18 +161,14 @@ int main(){
 	printf("Imprimindo os dados inseridos: \n");
 	imprimeLista(saco, n);
 
-	if (papaiNoel) { /* roda o papaiNoel e o algoritmo*/
-		printf("Rodando... \n");
-	}
-	else{
-		printf("Algo deu errado na hora de rodar o algoritmo. \n");
-	}
+	papaiNoel(saco, n, p_max);
 
 	return 0;
 }
 
 /* PROBLEMAS A RESOLVER: 
 - implementação de fato do backtrack
+ANTIGO:
 - como maximizar de certeza o valor dos presentes?
 	-> tentar juntar todos com o maior valor sentimental primeiro? daí tira o com menor peso conforme a arvore continua
 	ATT: já fiz isso! */
