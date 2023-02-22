@@ -81,41 +81,41 @@ int isSafe(int p_max, int p_atual){
 void papaiNoelUtil(struct Presentes* lista_final, struct Presentes* saco, int p_max, int n, int l, int num_linhas, int i, int j){
 
 	/* CASO BASE: se o peso eh menor ou igual a p_max, e chegou ao fim da arvore, retorna*/
-	if (pesoAtual(lista_final, n) <= p_max && l == num_linhas || (i >= n)){ 
+	if ((pesoAtual(lista_final, n) <= p_max) && (l == num_linhas) || (i >= n)){ 
 		printf("Imprimindo a lista final de presentes enviados: \n");
-		imprimeLista(lista_final, n);
+		imprimeLista(saco, n);
 		printf("Soma total do valor sentimental: ");
-		valorSentTotal(lista_final, n);
+		valorSentTotal(saco, n);
 		return;
 	}
-
+	for(i = 0; i < n; i++){
 	/* se chegou ao fim e nn cumpre a expectativa, mas nn eh o fim do saco: */
-	else if (pesoAtual(lista_final, n) > p_max && l == num_linhas && ((j + 1) != n)){
-		printf("Peso excedido: caso 1! Subindo. \n");
-		lista_final[i].peso = 0;
-		lista_final[i].valor_s = 0;
-		l = l - 1; /* sobe uma linha */
-		papaiNoelUtil(lista_final, saco, p_max, n, l, num_linhas, i, j + 1); /* chama dnv e avança 1 pra frente */
-	}
+		if ((pesoAtual(lista_final, n) > p_max) && (l == num_linhas) && ((j + 1) != n)){
+			printf("Peso excedido: caso 1! Subindo. \n");
+			lista_final[i].peso = 0;
+			lista_final[i].valor_s = 0;
+			l = l - 1; /* sobe uma linha */
+			papaiNoelUtil(lista_final, saco, p_max, n, l, num_linhas, i, j + 1); /* chama dnv e avança 1 pra frente */
+		}
 	/* se tiver q tirar presentes anteriores: */
-	else if (pesoAtual(lista_final, n) > p_max && l == num_linhas && ((i+1) == n) && ((j + 1) != n)){
-		printf("Peso excedido: caso 2! Subindo. \n");
-		l = l - 1;
-		lista_final[i].peso = 0;
-		lista_final[i].valor_s = 0;
-		i = i - 1;
-		papaiNoelUtil(lista_final, saco, p_max, n, l, num_linhas, i, j+1);
+		else if ((pesoAtual(lista_final, n) > p_max) && (l == num_linhas) && ((i+1) == n) && ((j + 1) != n)){
+			printf("Peso excedido: caso 2! Subindo. \n");
+			l = l - 1;
+			lista_final[i].peso = 0;
+			lista_final[i].valor_s = 0;
+			i = i - 1;
+			papaiNoelUtil(lista_final, saco, p_max, n, l, num_linhas, i, j+1);
+		}
+
+		lista_final[i].peso = saco[j].peso;
+		lista_final[i].valor_s = saco[j].valor_s;
+		printf("Lista atual: \n");
+		imprimeLista(lista_final, n);
+		l = l + 1;
+		papaiNoelUtil(lista_final, saco, p_max, n, l, num_linhas, i+1, j+1);
+		return;
 	}
-
-	lista_final[i].peso = saco[j].peso;
-	lista_final[i].valor_s = saco[j].valor_s;
-	printf("Lista atual: \n");
-	imprimeLista(lista_final, n);
-	l = l + 1;
-	papaiNoelUtil(lista_final, saco, p_max, n, l, num_linhas, i+1, j+1);
-	return;
 }
-
 
 void papaiNoel(struct Presentes* saco, int n, int p_max){
 
