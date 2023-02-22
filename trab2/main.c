@@ -80,8 +80,9 @@ int isSafe(int p_max, int p_atual){
 
 void papaiNoelUtil(struct Presentes* lista_final, struct Presentes* saco, int p_max, int n, int l, int num_linhas, int i, int j){
 
+	int pesoAt = pesoAtual(lista_final, n);
 	/* CASO BASE: se o peso eh menor ou igual a p_max, e chegou ao fim da arvore, retorna*/
-	if ((pesoAtual(lista_final, n) <= p_max) && (l == num_linhas) || (i >= n)){ 
+	if ((pesoAt <= p_max) && (l == num_linhas) || (i >= n)){ 
 		printf("Imprimindo a lista final de presentes enviados: \n");
 		imprimeLista(saco, n);
 		printf("Soma total do valor sentimental: ");
@@ -89,16 +90,16 @@ void papaiNoelUtil(struct Presentes* lista_final, struct Presentes* saco, int p_
 		return;
 	}
 	for(i = 0; i < n; i++){
-	/* se chegou ao fim e nn cumpre a expectativa, mas nn eh o fim do saco: */
-		if ((pesoAtual(lista_final, n) > p_max) && (l == num_linhas) && ((j + 1) != n)){
+		/* se chegou ao fim e nn cumpre a expectativa, mas nn eh o fim do saco: */
+		if ((pesoAt > p_max) && (l == num_linhas) && ((j + 1) != n)){
 			printf("Peso excedido: caso 1! Subindo. \n");
 			lista_final[i].peso = 0;
 			lista_final[i].valor_s = 0;
 			l = l - 1; /* sobe uma linha */
 			papaiNoelUtil(lista_final, saco, p_max, n, l, num_linhas, i, j + 1); /* chama dnv e avança 1 pra frente */
 		}
-	/* se tiver q tirar presentes anteriores: */
-		else if ((pesoAtual(lista_final, n) > p_max) && (l == num_linhas) && ((i+1) == n) && ((j + 1) != n)){
+		/* se tiver q tirar presentes anteriores: */
+		else if ((pesoAt > p_max) && (l == num_linhas) && ((i+1) == n) && ((j + 1) != n)){
 			printf("Peso excedido: caso 2! Subindo. \n");
 			l = l - 1;
 			lista_final[i].peso = 0;
