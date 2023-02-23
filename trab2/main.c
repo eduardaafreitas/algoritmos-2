@@ -172,10 +172,3 @@ int main(){
 
 	return 0;
 }
-
-/* PROBLEMAS A RESOLVER: 
-- implementação de fato do backtrack
-ANTIGO:
-- como maximizar de certeza o valor dos presentes?
-	-> tentar juntar todos com o maior valor sentimental primeiro? daí tira o com menor peso conforme a arvore continua
-	ATT: já fiz isso! */
