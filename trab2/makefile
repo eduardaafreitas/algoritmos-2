@@ -1,4 +1,4 @@
-parametrosCompilacao= -lm
+parametrosCompilacao= -lm -g
 nomePrograma=trab2
 
 all: $(nomePrograma)
