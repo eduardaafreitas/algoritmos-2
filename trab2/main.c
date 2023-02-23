@@ -13,33 +13,6 @@ struct Presentes {
 	int peso;
 } presente;
 
-/* ============================================================================================ */
-
-void ordenaInsertion(struct Presentes* lista_atual, int tam){
-    if (tam == 0){
-		return;
-	}
-    ordenaInsertion(lista_atual, tam-1);
- 
-    int ultimo_valor_s = lista_atual[tam-1].valor_s;
-    struct Presentes ultimo;
-    int j = tam-2;
-    while (j >= 0 && lista_atual[j].valor_s > ultimo_valor_s){
-        lista_atual[j+1] = lista_atual[j];
-        j--;
-    }
-    lista_atual[j+1] = ultimo;
-}
-
-void insertionSort(struct Presentes* lista_atual, int tam){	
-	if(tam == 0){
-		return;
-	}
-	else{
-		ordenaInsertion(lista_atual, tam-1);	//wrapper
-	}
-	return;
-}
 
 /* ============================================================================================== */
 
@@ -67,7 +40,7 @@ int pesoAtual (struct Presentes* lista_atual, int tam_lista){
 void valorSentTotal (struct Presentes* lista_atual, int tam_lista){
 	int i;
 	int total = 0;
-	for (int i = 0; i <= tam_lista; ++i){
+	for (int i = 0; i < tam_lista; ++i){
 		total = total + lista_atual[i].valor_s;
 	}
 	printf("%d \n", total);
@@ -127,13 +100,13 @@ void papaiNoelUtil(struct Presentes* lista_final, struct Presentes* saco, int p_
 void papaiNoel(struct Presentes* saco, int n, int p_max){
 
 	struct Presentes* lista_final; /* o lista_final irá conter os presentes q serão enviados ao fim :P */
-	lista_final = malloc(n * sizeof(struct Presentes));
+	lista_final = calloc(n, sizeof(struct Presentes));
 	if (lista_final == NULL){
 		printf("Erro na alocação! Encerrando... \n");
 		return;
 	}
 
-	insertionSort(saco, n); /* ordena os presentes do saco por valor sentimental */
+	//insertionSort(saco, n); /* ordena os presentes do saco por valor sentimental */
 
 	int num_linhas;
 	num_linhas = (int)(floor(log2((double)n))); /* altura da arvore = piso de log2 de n*/
